@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Слив Карасева</title>
     <style>
-        /* Сбрасываем отступы и делаем так, чтобы фон занимал всю высоту */
         * {
             margin: 0;
             padding: 0;
@@ -13,98 +12,180 @@
         }
 
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: linear-gradient(145deg, #0b0f17 0%, #1a1f2f 100%);
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0c0f1c;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            text-align: center;
-            padding: 16px;
+            padding: 20px;
+            position: relative;
         }
 
-        .container {
-            max-width: 900px;
-            width: 100%;
-        }
-
-        h1 {
-            font-size: clamp(3rem, 15vw, 7rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            text-transform: uppercase;
-            text-shadow: 0 0 20px rgba(220, 50, 50, 0.5), 0 0 40px rgba(180, 30, 30, 0.3);
-            background: linear-gradient(135deg, #f6d5d5, #ff9a9a);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 0.25rem;
-            line-height: 1.1;
-            animation: flicker 4s infinite alternate;
-        }
-
-        .sub {
-            font-size: clamp(1.1rem, 4vw, 1.9rem);
-            font-weight: 400;
-            opacity: 0.9;
-            letter-spacing: 0.5px;
-            color: #b9c2d9;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-            max-width: 700px;
-            margin: 1rem auto 0;
-            border-top: 1px dashed rgba(255, 160, 160, 0.3);
-            padding-top: 1.5rem;
-            background: rgba(10, 15, 25, 0.4);
-            backdrop-filter: blur(2px);
-            border-radius: 60px;
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-
-        /* лёгкий намёк на тех. стиль — мигающий курсор/деталь */
-        .sub::after {
-            content: "_";
-            display: inline-block;
-            width: 0.6em;
-            margin-left: 4px;
-            animation: blink 1s step-end infinite;
-            font-weight: 300;
-            color: #ff7b7b;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        @keyframes flicker {
-            0% { text-shadow: 0 0 20px rgba(220, 50, 50, 0.4), 0 0 40px rgba(180, 30, 30, 0.2); }
-            50% { text-shadow: 0 0 25px rgba(230, 70, 70, 0.9), 0 0 55px rgba(200, 40, 40, 0.6); }
-            100% { text-shadow: 0 0 15px rgba(210, 40, 40, 0.5), 0 0 35px rgba(150, 20, 20, 0.3); }
-        }
-
-        /* дополнительный эффект «сетки» или шума на фоне — опционально */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(circle at 30% 40%, rgba(255, 100, 100, 0.03) 0px, transparent 40%),
-                              repeating-linear-gradient(45deg, rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.02) 2px, transparent 2px, transparent 6px);
+            background: radial-gradient(circle at 30% 40%, rgba(180, 40, 40, 0.08) 0%, transparent 50%),
+                        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.01) 0px, rgba(255, 255, 255, 0.01) 2px, transparent 2px, transparent 8px);
             pointer-events: none;
-            z-index: 1;
+            z-index: 0;
         }
 
-        .container {
+        .card {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(18, 22, 36, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(220, 80, 80, 0.25);
+            border-radius: 58px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 30px 50px -20px rgba(0,0,0,0.9), 0 0 0 1px rgba(200, 60, 60, 0.2) inset, 0 0 30px rgba(200, 30, 30, 0.3);
+            transition: 0.3s;
             position: relative;
             z-index: 2;
+        }
+
+        h1 {
+            font-size: clamp(3.2rem, 14vw, 6.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            text-align: center;
+            background: linear-gradient(135deg, #fadcdc, #ffa8a8, #ff7a7a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px #b32b2b80, 0 0 40px #8f1e1e40;
+            margin-bottom: 0.8rem;
+            line-height: 1;
+            filter: drop-shadow(0 4px 6px #00000050);
+        }
+
+        .data-block {
+            background: #0f1322e0;
+            border-left: 5px solid #b72f2f;
+            border-radius: 32px;
+            padding: 2rem 2.2rem;
+            margin-top: 1.6rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 130, 130, 0.2);
+            font-family: 'Fira Code', 'JetBrains Mono', 'Cascadia Code', 'Courier New', monospace;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #e3e7f5;
+            border: 1px solid #511c1c;
+            word-break: break-word;
+        }
+
+        .data-line {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            border-bottom: 1px dashed rgba(255, 160, 160, 0.15);
+            padding: 0.3rem 0;
+        }
+
+        .data-line:last-child {
+            border-bottom: none;
+        }
+
+        .data-label {
+            min-width: 210px;
+            font-weight: 500;
+            color: #b0bbda;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            font-size: 0.85rem;
+            text-shadow: 0 2px 3px black;
+        }
+
+        .data-value {
+            font-weight: 400;
+            color: #ffffff;
+            word-break: break-word;
+            flex: 1;
+            text-shadow: 0 0 5px #ff9898;
+        }
+
+        .data-value a {
+            color: #ffaeae;
+            text-decoration: none;
+            border-bottom: 1px dotted #c55;
+        }
+
+        .data-value a:hover {
+            color: white;
+            border-bottom: 1px solid #ff7e7e;
+        }
+
+        .tg {
+            color: #ffb3b3;
+            font-weight: 500;
+        }
+
+        @media (max-width: 550px) {
+            .card { padding: 1.8rem 1.2rem; }
+            .data-block { padding: 1.5rem; }
+            .data-line { flex-direction: column; margin-bottom: 0.8rem; }
+            .data-label { margin-bottom: 2px; }
+        }
+
+        .glow {
+            animation: softGlow 3s infinite alternate;
+        }
+
+        @keyframes softGlow {
+            0% { border-color: rgba(190, 70, 70, 0.2); box-shadow: 0 0 15px #6b1e1e30; }
+            100% { border-color: rgba(230, 100, 100, 0.5); box-shadow: 0 0 35px #a52a2a60; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Слив Карасева</h1>
-        <div class="sub">Скоро тут появятся паспортные данные Карасева</div>
+    <div class="card glow">
+        <h1>СЛИВ КАРАСЕВА</h1>
+        <div class="data-block">
+            <div class="data-line">
+                <span class="data-label">▸ ПОЛНОЕ ФИО</span>
+                <span class="data-value">Карасев Дмитрий Александрович</span>
+            </div>
+            <div class="data-line">
+                <span class="data-label">▸ ДАТА РОЖДЕНИЯ</span>
+                <span class="data-value">14.02.1998 (28 лет)</span>
+            </div>
+            <div class="data-line">
+                <span class="data-label">▸ АДРЕС ПРОЖИВАНИЯ</span>
+                <span class="data-value">Республика Татарстан, город Набережные Челны, проспект имени Мусы Джалиля, дом 22, квартира 61</span>
+            </div>
+            <div class="data-line">
+                <span class="data-label">▸ ПОЧТА</span>
+                <span class="data-value">KARASEV14DIMA@MAIL.RU</span>
+            </div>
+            <div class="data-line">
+                <span class="data-label">▸ СЕРИЯ И НОМЕР ПАСПОРТА</span>
+                <span class="data-value">9217 331436</span>
+            </div>
+            <div class="data-line">
+                <span class="data-label">▸ СНИЛС</span>
+                <span class="data-value">15950414371</span>
+            </div>
+            <div class="data-line">
+                <span class="data-label">▸ ИНН</span>
+                <span class="data-value">165054283884</span>
+            </div>
+            <div class="data-line">
+                <span class="data-label">▸ МЕСТО РАБОТЫ (2026)</span>
+                <span class="data-value">Преподаватель в ИЭК НЧИ КФУ</span>
+            </div>
+            <div class="data-line">
+                <span class="data-label">▸ ТЕЛЕГРАМ</span>
+                <span class="data-value tg"><a href="https://t.me/karasevdmi" target="_blank">https://t.me/karasevdmi</a></span>
+            </div>
+            <div class="data-line">
+                <span class="data-label">▸ ВТОРАЯ ПОЧТА</span>
+                <span class="data-value">karasev1dima@vk.com</span>
+            </div>
+        </div>
     </div>
 </body>
-</html>
+</html>y
